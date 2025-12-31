@@ -1,0 +1,38 @@
+camera:
+  main_size: [1920, 1080]
+  lores_size: [480, 270]
+  fps: 15
+
+motion:
+  method: "mog2"
+  mog2_history: 300
+  mog2_var_threshold: 24
+  min_area: 2000
+  blur_ksize: 7
+  dilate_iter: 2
+  erode_iter: 1
+  warmup_seconds: 2.0
+
+recording:
+  out_dir: "./recordings"
+  container: "avi"
+  max_file_mb: 128
+  prebuffer_seconds: 2.0
+  stop_after_seconds: 3.0
+  min_record_seconds: 2.0
+  bitrate: "20M"
+  encoder_preference: ["mjpeg", "libx264"]
+  extra_ffmpeg_args:
+    - "-vf"
+    - "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='%{localtime\\:%Y-%m-%d %H\\\\:%M\\\\:%S}':x=20:y=20:fontsize=28:box=1:boxborderw=6"
+
+upload:
+  enabled: false
+  host: "10.0.0.10"
+  port: 22
+  username: "user"
+  pkey_path: "/home/pi/.ssh/id_ed25519"
+  remote_dir: "/data/cams/pi01"
+  delete_after_upload: false
+  max_retries: 5
+  retry_backoff_seconds: 10
