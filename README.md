@@ -54,6 +54,7 @@ sudo journalctl -u motionrec -f
 ## Output files
 - Written as `.part` while recording
 - Renamed to final extension when closed (e.g. `.mp4`)
+- For each finalized video, a **sidecar CSV** is written with the same base name: `motion_... .csv`
 - Watcher uploads only finalized files
 
 ## Encoding notes
