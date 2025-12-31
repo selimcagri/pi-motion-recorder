@@ -1,0 +1,16 @@
+[Unit]
+Description=Pi Motion Recorder
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/pi-motion-recorder
+ExecStart=/usr/bin/python3 -m motionrec --config /home/pi/pi-motion-recorder/config/config.yaml
+Restart=always
+RestartSec=2
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

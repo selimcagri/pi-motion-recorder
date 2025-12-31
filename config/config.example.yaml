@@ -1,0 +1,37 @@
+camera:
+  main_size: [1280, 720]      # recording frames
+  lores_size: [320, 240]      # motion detection frames
+  fps: 15
+
+motion:
+  method: "mog2"              # mog2 | diff
+  mog2_history: 300
+  mog2_var_threshold: 24
+  min_area: 1200              # smaller => more sensitive
+  blur_ksize: 7
+  dilate_iter: 2
+  erode_iter: 1
+  warmup_seconds: 2.0         # ignore first seconds (auto-exposure settling)
+
+recording:
+  out_dir: "./recordings"
+  container: "mp4"            # mp4 | mkv | avi
+  max_file_mb: 128
+  prebuffer_seconds: 2.0      # include a little before motion
+  stop_after_seconds: 3.0     # stop if no motion for N seconds
+  min_record_seconds: 2.0     # avoid tiny clips
+  bitrate: "3M"               # ffmpeg -b:v
+  encoder_preference: ["h264_v4l2m2m", "libx264"]
+  extra_ffmpeg_args: ["-movflags", "+faststart"]  # mp4 friendly
+
+upload:
+  enabled: false
+  host: "10.0.0.10"
+  port: 22
+  username: "user"
+  # password: ""              # prefer key
+  pkey_path: "/home/pi/.ssh/id_ed25519"
+  remote_dir: "/data/cams/pi01"
+  delete_after_upload: false
+  max_retries: 5
+  retry_backoff_seconds: 10

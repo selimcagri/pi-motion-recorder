@@ -1,0 +1,4 @@
+PyYAML>=6.0
+numpy>=1.24
+watchdog>=3.0.0
+paramiko>=3.4.0
